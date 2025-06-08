@@ -1,0 +1,535 @@
+mixed-port: 7890
+allow-lan: false
+bind-address: '*'
+mode: rule
+log-level: info
+external-controller: 127.0.0.1:9090
+dns:
+  enable: true
+  ipv6: false
+  default-nameserver:
+  - 223.5.5.5
+  - 119.29.29.29
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  nameserver:
+  - https://doh.pub/dns-query
+  - https://dns.alidns.com/dns-query
+proxies:
+- name: 🇭🇰 香港中转
+  type: trojan
+  server: wb.kaiqsz.com
+  port: 12221
+  password: 57496987-12da-4e70-a3fe-38a6ce2c0718
+  udp: true
+  skip-cert-verify: true
+  sni: mmbiz.redapricotcloud.com
+  network: tcp
+- name: 🇭🇰 香港中转 - 东莞
+  type: trojan
+  server: js-12f83a8c.kaiqsz.com
+  port: 12221
+  password: 57496987-12da-4e70-a3fe-38a6ce2c0718
+  udp: true
+  skip-cert-verify: true
+  sni: mmbiz.redapricotcloud.com
+  network: tcp
+- name: 🇭🇰 香港中转 - 广州
+  type: trojan
+  server: gz-43e866.kaiqsz.com
+  port: 12221
+  password: 57496987-12da-4e70-a3fe-38a6ce2c0718
+  udp: true
+  skip-cert-verify: true
+  sni: mmbiz.redapricotcloud.com
+  network: tcp
+- name: 🇨🇳 台湾中转
+  type: trojan
+  server: wb.kaiqsz.com
+  port: 42765
+  password: 57496987-12da-4e70-a3fe-38a6ce2c0718
+  udp: true
+  skip-cert-verify: true
+  sni: mmbiz1.redapricotcloud.com
+  network: tcp
+- name: 🇨🇳 台湾中转 - 东莞
+  type: trojan
+  server: js-12f83a8c.kaiqsz.com
+  port: 42765
+  password: 57496987-12da-4e70-a3fe-38a6ce2c0718
+  udp: true
+  skip-cert-verify: true
+  sni: mmbiz1.redapricotcloud.com
+  network: tcp
+- name: 🇨🇳 台湾中转 - 广州
+  type: trojan
+  server: gz-43e866.kaiqsz.com
+  port: 42765
+  password: 57496987-12da-4e70-a3fe-38a6ce2c0718
+  udp: true
+  skip-cert-verify: true
+  sni: mmbiz1.redapricotcloud.com
+  network: tcp
+- name: 🇸🇬 新加坡中转
+  type: trojan
+  server: wb.kaiqsz.com
+  port: 48291
+  password: 57496987-12da-4e70-a3fe-38a6ce2c0718
+  udp: true
+  skip-cert-verify: true
+  sni: mmbiz1.redapricotcloud.com
+  network: tcp
+- name: 🇸🇬 新加坡中转 - 东莞
+  type: trojan
+  server: js-12f83a8c.kaiqsz.com
+  port: 18489
+  password: 57496987-12da-4e70-a3fe-38a6ce2c0718
+  udp: true
+  skip-cert-verify: true
+  sni: mmbiz1.redapricotcloud.com
+  network: tcp
+- name: 🇸🇬 新加坡中转 - 广州
+  type: trojan
+  server: gz-43e866.kaiqsz.com
+  port: 18489
+  password: 57496987-12da-4e70-a3fe-38a6ce2c0718
+  udp: true
+  skip-cert-verify: true
+  sni: mmbiz1.redapricotcloud.com
+  network: tcp
+- name: 🇯🇵 日本中转1-家宽
+  type: trojan
+  server: wb.kaiqsz.com
+  port: 49921
+  password: 57496987-12da-4e70-a3fe-38a6ce2c0718
+  udp: true
+  skip-cert-verify: true
+  sni: mmbiz1.redapricotcloud.com
+  network: tcp
+- name: 🇯🇵 日本中转2-家宽
+  type: trojan
+  server: wb.kaiqsz.com
+  port: 49921
+  password: 57496987-12da-4e70-a3fe-38a6ce2c0718
+  udp: true
+  skip-cert-verify: true
+  sni: mmbiz1.redapricotcloud.com
+  network: tcp
+- name: 🇯🇵 日本中转
+  type: trojan
+  server: wb.kaiqsz.com
+  port: 28713
+  password: 57496987-12da-4e70-a3fe-38a6ce2c0718
+  udp: true
+  skip-cert-verify: true
+  sni: mmbiz1.redapricotcloud.com
+  network: tcp
+- name: 🇯🇵 日本中转 - 广州
+  type: trojan
+  server: gz-43e866.kaiqsz.com
+  port: 28713
+  password: 57496987-12da-4e70-a3fe-38a6ce2c0718
+  udp: true
+  skip-cert-verify: true
+  sni: mmbiz1.redapricotcloud.com
+  network: tcp
+- name: 🇯🇵 日本中转 - 东莞
+  type: trojan
+  server: js-12f83a8c.kaiqsz.com
+  port: 28713
+  password: 57496987-12da-4e70-a3fe-38a6ce2c0718
+  udp: true
+  skip-cert-verify: true
+  sni: mmbiz1.redapricotcloud.com
+  network: tcp
+- name: 🇺🇸 美国中转
+  type: trojan
+  server: wb.kaiqsz.com
+  port: 21489
+  password: 57496987-12da-4e70-a3fe-38a6ce2c0718
+  udp: true
+  skip-cert-verify: true
+  sni: mmbiz.redapricotcloud.com
+  network: tcp
+- name: 🇺🇸 美国中转 - 广州
+  type: trojan
+  server: gz-43e866.kaiqsz.com
+  port: 21489
+  password: 57496987-12da-4e70-a3fe-38a6ce2c0718
+  udp: true
+  skip-cert-verify: true
+  sni: mmbiz.redapricotcloud.com
+  network: tcp
+- name: 🇺🇸 美国中转 - 东莞
+  type: trojan
+  server: js-12f83a8c.kaiqsz.com
+  port: 21489
+  password: 57496987-12da-4e70-a3fe-38a6ce2c0718
+  udp: true
+  skip-cert-verify: true
+  sni: mmbiz.redapricotcloud.com
+  network: tcp
+- name: 🇺🇸 美国中转原生
+  type: trojan
+  server: nbae7a7.kaiqsz.com
+  port: 53547
+  password: 57496987-12da-4e70-a3fe-38a6ce2c0718
+  udp: true
+  skip-cert-verify: true
+  sni: mmbiz.redapricotcloud.com
+  network: tcp
+- name: 🇰🇷 韩国-首尔
+  type: trojan
+  server: lm.kaiqsz.com
+  port: 51075
+  password: 57496987-12da-4e70-a3fe-38a6ce2c0718
+  udp: true
+  skip-cert-verify: true
+  sni: mmbiz10.redapricotcloud.com
+  network: tcp
+- name: 🇩🇪 德国
+  type: trojan
+  server: lm.kaiqsz.com
+  port: 21463
+  password: 57496987-12da-4e70-a3fe-38a6ce2c0718
+  udp: true
+  skip-cert-verify: true
+  sni: mmbiz12.redapricotcloud.com
+  network: tcp
+- name: 🇫🇷 法国
+  type: trojan
+  server: lm.kaiqsz.com
+  port: 14651
+  password: 57496987-12da-4e70-a3fe-38a6ce2c0718
+  udp: true
+  skip-cert-verify: true
+  sni: mmbiz12.redapricotcloud.com
+  network: tcp
+- name: 🇬🇧 英国
+  type: trojan
+  server: lm.kaiqsz.com
+  port: 59358
+  password: 57496987-12da-4e70-a3fe-38a6ce2c0718
+  udp: true
+  skip-cert-verify: true
+  sni: mmbiz11.redapricotcloud.com
+  network: tcp
+- name: 🇳🇱 荷兰
+  type: trojan
+  server: lm.kaiqsz.com
+  port: 39851
+  password: 57496987-12da-4e70-a3fe-38a6ce2c0718
+  udp: true
+  skip-cert-verify: true
+  sni: mmbiz13.redapricotcloud.com
+  network: tcp
+- name: 🇮🇳 印度-西部
+  type: trojan
+  server: lm.kaiqsz.com
+  port: 33243
+  password: 57496987-12da-4e70-a3fe-38a6ce2c0718
+  udp: true
+  skip-cert-verify: true
+  sni: mmbiz13.redapricotcloud.com
+  network: tcp
+- name: 🇨🇱 智利
+  type: trojan
+  server: lm.kaiqsz.com
+  port: 54031
+  password: 57496987-12da-4e70-a3fe-38a6ce2c0718
+  udp: true
+  skip-cert-verify: true
+  sni: mmbiz10.redapricotcloud.com
+  network: tcp
+- name: 🇧🇷 巴西
+  type: trojan
+  server: lm.kaiqsz.com
+  port: 28499
+  password: 57496987-12da-4e70-a3fe-38a6ce2c0718
+  udp: true
+  skip-cert-verify: true
+  sni: mmbiz10.redapricotcloud.com
+  network: tcp
+- name: 🇪🇸 西班牙
+  type: trojan
+  server: lm.kaiqsz.com
+  port: 34249
+  password: 57496987-12da-4e70-a3fe-38a6ce2c0718
+  udp: true
+  skip-cert-verify: true
+  sni: mmbiz12.redapricotcloud.com
+  network: tcp
+- name: 🇨🇭 瑞士
+  type: trojan
+  server: lm.kaiqsz.com
+  port: 50140
+  password: 57496987-12da-4e70-a3fe-38a6ce2c0718
+  udp: true
+  skip-cert-verify: true
+  sni: mmbiz11.redapricotcloud.com
+  network: tcp
+- name: 🇸🇪 瑞典
+  type: trojan
+  server: lm.kaiqsz.com
+  port: 59225
+  password: 57496987-12da-4e70-a3fe-38a6ce2c0718
+  udp: true
+  skip-cert-verify: true
+  sni: mmbiz12.redapricotcloud.com
+  network: tcp
+- name: 🇲🇽 墨西哥
+  type: trojan
+  server: lm.kaiqsz.com
+  port: 14571
+  password: 57496987-12da-4e70-a3fe-38a6ce2c0718
+  udp: true
+  skip-cert-verify: true
+  sni: mmbiz13.redapricotcloud.com
+  network: tcp
+- name: 🇨🇦 加拿大
+  type: trojan
+  server: lm.kaiqsz.com
+  port: 50121
+  password: 57496987-12da-4e70-a3fe-38a6ce2c0718
+  udp: true
+  skip-cert-verify: true
+  sni: mmbiz13.redapricotcloud.com
+  network: tcp
+- name: 🇦🇺 澳大利亚
+  type: trojan
+  server: lm.kaiqsz.com
+  port: 50757
+  password: 57496987-12da-4e70-a3fe-38a6ce2c0718
+  udp: true
+  skip-cert-verify: true
+  sni: mmbiz14.redapricotcloud.com
+  network: tcp
+- name: 🇦🇪 迪拜
+  type: trojan
+  server: lm.kaiqsz.com
+  port: 47621
+  password: 57496987-12da-4e70-a3fe-38a6ce2c0718
+  udp: true
+  skip-cert-verify: true
+  sni: mmbiz10.redapricotcloud.com
+  network: tcp
+- name: 🇿🇦 南非
+  type: trojan
+  server: lm.kaiqsz.com
+  port: 53759
+  password: 57496987-12da-4e70-a3fe-38a6ce2c0718
+  udp: true
+  skip-cert-verify: true
+  sni: mmbiz11.redapricotcloud.com
+  network: tcp
+- name: 🇸🇦 沙特阿拉伯
+  type: trojan
+  server: lm.kaiqsz.com
+  port: 59137
+  password: 57496987-12da-4e70-a3fe-38a6ce2c0718
+  udp: true
+  skip-cert-verify: true
+  sni: mmbiz11.redapricotcloud.com
+  network: tcp
+- name: 🇨🇴 哥伦比亚
+  type: trojan
+  server: lm.kaiqsz.com
+  port: 55799
+  password: 57496987-12da-4e70-a3fe-38a6ce2c0718
+  udp: true
+  skip-cert-verify: true
+  sni: mmbiz10.redapricotcloud.com
+  network: tcp
+- name: 🇮🇱 以色列
+  type: trojan
+  server: lm.kaiqsz.com
+  port: 23846
+  password: 57496987-12da-4e70-a3fe-38a6ce2c0718
+  udp: true
+  skip-cert-verify: true
+  sni: mmbiz14.redapricotcloud.com
+  network: tcp
+- name: 🇻🇳 越南
+  type: trojan
+  server: lm.kaiqsz.com
+  port: 59009
+  password: 57496987-12da-4e70-a3fe-38a6ce2c0718
+  udp: true
+  skip-cert-verify: true
+  sni: mmbiz14.redapricotcloud.com
+  network: tcp
+- name: 🇹🇭 泰国
+  type: trojan
+  server: lm.kaiqsz.com
+  port: 43855
+  password: 57496987-12da-4e70-a3fe-38a6ce2c0718
+  udp: true
+  skip-cert-verify: true
+  sni: mmbiz14.redapricotcloud.com
+  network: tcp
+- name: 🇲🇾 马来西亚
+  type: trojan
+  server: lm.kaiqsz.com
+  port: 30383
+  password: 57496987-12da-4e70-a3fe-38a6ce2c0718
+  udp: true
+  skip-cert-verify: true
+  sni: mmbiz14.redapricotcloud.com
+  network: tcp
+- name: 🇷🇺 莫斯科
+  type: trojan
+  server: lm.kaiqsz.com
+  port: 16783
+  password: 57496987-12da-4e70-a3fe-38a6ce2c0718
+  udp: true
+  skip-cert-verify: true
+  sni: mmbiz15.redapricotcloud.com
+  network: tcp
+- name: 🇵🇭 菲律宾
+  type: trojan
+  server: lm.kaiqsz.com
+  port: 58947
+  password: 57496987-12da-4e70-a3fe-38a6ce2c0718
+  udp: true
+  skip-cert-verify: true
+  sni: mmbiz15.redapricotcloud.com
+  network: tcp
+- name: 🇳🇬 尼日利亚
+  type: trojan
+  server: lm.kaiqsz.com
+  port: 34183
+  password: 57496987-12da-4e70-a3fe-38a6ce2c0718
+  udp: true
+  skip-cert-verify: true
+  sni: mmbiz16.redapricotcloud.com
+  network: tcp
+- name: 🇮🇩 印度尼西亚
+  type: trojan
+  server: lm.kaiqsz.com
+  port: 40391
+  password: 57496987-12da-4e70-a3fe-38a6ce2c0718
+  udp: true
+  skip-cert-verify: true
+  sni: mmbiz16.redapricotcloud.com
+  network: tcp
+- name: 🇹🇷 土耳其
+  type: trojan
+  server: lm.kaiqsz.com
+  port: 49569
+  password: 57496987-12da-4e70-a3fe-38a6ce2c0718
+  udp: true
+  skip-cert-verify: true
+  sni: mmbiz16.redapricotcloud.com
+  network: tcp
+proxy-groups:
+- name: 🌟 主选择
+  type: select
+  proxies:
+  - 🇭🇰 香港中转
+  - 🇭🇰 香港中转 - 东莞
+  - 🇭🇰 香港中转 - 广州
+  - 🇨🇳 台湾中转
+  - 🇨🇳 台湾中转 - 东莞
+  - 🇨🇳 台湾中转 - 广州
+  - 🇸🇬 新加坡中转
+  - 🇸🇬 新加坡中转 - 东莞
+  - 🇸🇬 新加坡中转 - 广州
+  - 🇯🇵 日本中转1-家宽
+  - 🇯🇵 日本中转2-家宽
+  - 🇯🇵 日本中转
+  - 🇯🇵 日本中转 - 广州
+  - 🇯🇵 日本中转 - 东莞
+  - 🇺🇸 美国中转
+  - 🇺🇸 美国中转 - 广州
+  - 🇺🇸 美国中转 - 东莞
+  - 🇺🇸 美国中转原生
+  - 🇰🇷 韩国-首尔
+  - 🇩🇪 德国
+  - 🇫🇷 法国
+  - 🇬🇧 英国
+  - 🇳🇱 荷兰
+  - 🇮🇳 印度-西部
+  - 🇨🇱 智利
+  - 🇧🇷 巴西
+  - 🇪🇸 西班牙
+  - 🇨🇭 瑞士
+  - 🇸🇪 瑞典
+  - 🇲🇽 墨西哥
+  - 🇨🇦 加拿大
+  - 🇦🇺 澳大利亚
+  - 🇦🇪 迪拜
+  - 🇿🇦 南非
+  - 🇸🇦 沙特阿拉伯
+  - 🇨🇴 哥伦比亚
+  - 🇮🇱 以色列
+  - 🇻🇳 越南
+  - 🇹🇭 泰国
+  - 🇲🇾 马来西亚
+  - 🇷🇺 莫斯科
+  - 🇵🇭 菲律宾
+  - 🇳🇬 尼日利亚
+  - 🇮🇩 印度尼西亚
+  - 🇹🇷 土耳其
+- name: 香港出口
+  type: select
+  proxies:
+  - 🇭🇰 香港中转
+  - 🇭🇰 香港中转 - 东莞
+  - 🇭🇰 香港中转 - 广州
+- name: 美国出口
+  type: select
+  proxies:
+  - 🇺🇸 美国中转
+  - 🇺🇸 美国中转 - 广州
+  - 🇺🇸 美国中转 - 东莞
+  - 🇺🇸 美国中转原生
+- name: 日本出口
+  type: select
+  proxies:
+  - 🇯🇵 日本中转1-家宽
+  - 🇯🇵 日本中转2-家宽
+  - 🇯🇵 日本中转
+  - 🇯🇵 日本中转 - 广州
+  - 🇯🇵 日本中转 - 东莞
+  - 🇳🇬 尼日利亚
+- name: 新加坡出口
+  type: select
+  proxies:
+  - 🇸🇬 新加坡中转
+  - 🇸🇬 新加坡中转 - 东莞
+  - 🇸🇬 新加坡中转 - 广州
+- name: 台湾出口
+  type: select
+  proxies:
+  - 🇨🇳 台湾中转
+  - 🇨🇳 台湾中转 - 东莞
+  - 🇨🇳 台湾中转 - 广州
+rules:
+- DOMAIN-SUFFIX,local,DIRECT
+- IP-CIDR,127.0.0.0/8,DIRECT
+- IP-CIDR,172.16.0.0/12,DIRECT
+- IP-CIDR,192.168.0.0/16,DIRECT
+- IP-CIDR,10.0.0.0/8,DIRECT
+- GEOIP,CN,DIRECT
+- MATCH,🌟 主选择
+listeners:
+- name: 香港SOCKS
+  type: socks
+  port: 7891
+  proxy: 香港出口
+- name: 美国SOCKS
+  type: socks
+  port: 7892
+  proxy: 美国出口
+- name: 日本SOCKS
+  type: socks
+  port: 7893
+  proxy: 日本出口
+- name: 新加坡SOCKS
+  type: socks
+  port: 7894
+  proxy: 新加坡出口
+- name: 台湾SOCKS
+  type: socks
+  port: 7895
+  proxy: 台湾出口

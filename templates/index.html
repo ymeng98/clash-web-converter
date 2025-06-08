@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clash稳定中转SOCKS代理转换器</title>
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <!-- 图标库 -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/lucide@0.294.0/dist/umd/lucide.js" rel="stylesheet">
+    <!-- 字体 -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- 增强的头部区域 -->
+        <header class="header">
+            <div class="header-bg">
+                <div class="header-pattern"></div>
+                <div class="header-gradient"></div>
+            </div>
+            <div class="header-content">
+                <div class="logo-section">
+                    <div class="logo-icon">
+                        <div class="logo-outer">
+                            <i class="fas fa-network-wired"></i>
+                        </div>
+                        <div class="logo-pulse"></div>
+                    </div>
+                    <div class="logo-text">
+                        <h1>Clash SOCKS 代理转换器</h1>
+                        <div class="logo-badge">
+                            <i class="fas fa-shield-check"></i>
+                            <span>智能转换</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="subtitle-section">
+                    <p class="subtitle">智能提取稳定中转节点，生成多地区专用SOCKS代理配置</p>
+                    <div class="feature-tags">
+                        <span class="feature-tag">
+                            <i class="fas fa-bolt"></i>
+                            快速转换
+                        </span>
+                        <span class="feature-tag">
+                            <i class="fas fa-globe-asia"></i>
+                            多地区支持
+                        </span>
+                        <span class="feature-tag">
+                            <i class="fas fa-cog"></i>
+                            智能过滤
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- 主要内容区域 -->
+        <main class="main-content">
+            <!-- 输入区域 -->
+            <section class="input-section">
+                <div class="section-header">
+                    <h2>
+                        <i class="fas fa-rocket"></i>
+                        开始转换
+                    </h2>
+                    <p>选择输入方式，开始智能转换您的代理配置</p>
+                </div>
+                
+                <div class="tab-container">
+                    <div class="tab-buttons">
+                        <button class="tab-btn active" data-tab="url">
+                            <div class="tab-icon">
+                                <i class="fas fa-link"></i>
+                            </div>
+                            <div class="tab-text">
+                                <span>订阅链接</span>
+                                <small>从机场订阅转换</small>
+                            </div>
+                        </button>
+                        <button class="tab-btn" data-tab="file">
+                            <div class="tab-icon">
+                                <i class="fas fa-upload"></i>
+                            </div>
+                            <div class="tab-text">
+                                <span>上传文件</span>
+                                <small>本地配置文件</small>
+                            </div>
+                        </button>
+                    </div>
+
+                    <!-- 订阅链接输入 -->
+                    <div class="tab-content active" id="url-tab">
+                        <div class="input-card">
+                            <div class="input-group">
+                                <label for="subscription-url">
+                                    <i class="fas fa-globe"></i>
+                                    机场订阅链接
+                                </label>
+                                <div class="input-wrapper">
+                                    <input 
+                                        type="url" 
+                                        id="subscription-url" 
+                                        placeholder="https://your-airport.com/api/v1/client/subscribe?token=..."
+                                        class="url-input"
+                                    >
+                                    <div class="input-icon">
+                                        <i class="fas fa-paste"></i>
+                                    </div>
+                                </div>
+                                <small class="input-hint">
+                                    <i class="fas fa-info-circle"></i>
+                                    支持 Clash、V2Ray 等格式的订阅链接
+                                </small>
+                            </div>
+                            
+                            <!-- 转换模式选择 -->
+                            <div class="input-group">
+                                <label>
+                                    <i class="fas fa-cogs"></i>
+                                    转换模式
+                                </label>
+                                <div class="mode-selector">
+                                    <input type="radio" id="mode-standard" name="convert-mode" value="standard">
+                                    <label for="mode-standard" class="mode-option">
+                                        <div class="mode-icon">
+                                            <i class="fas fa-desktop"></i>
+                                        </div>
+                                        <div class="mode-content">
+                                            <span class="mode-title">标准模式</span>
+                                            <small class="mode-desc">适用于个人电脑和移动设备</small>
+                                        </div>
+                                        <div class="mode-check"></div>
+                                    </label>
+                                    
+                                    <input type="radio" id="mode-openwrt" name="convert-mode" value="openwrt">
+                                    <label for="mode-openwrt" class="mode-option">
+                                        <div class="mode-icon">
+                                            <i class="fas fa-router"></i>
+                                        </div>
+                                        <div class="mode-content">
+                                            <span class="mode-title">OpenWrt模式</span>
+                                            <small class="mode-desc">专为软路由和透明代理优化</small>
+                                        </div>
+                                        <div class="mode-check"></div>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <button class="convert-btn primary" id="convert-url-btn">
+                                <i class="fas fa-magic"></i>
+                                <span>开始转换</span>
+                                <div class="btn-glow"></div>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 文件上传 -->
+                    <div class="tab-content" id="file-tab">
+                        <div class="input-card">
+                            <div class="upload-area" id="upload-area">
+                                <div class="upload-content">
+                                    <div class="upload-icon">
+                                        <i class="fas fa-cloud-upload-alt"></i>
+                                    </div>
+                                    <div class="upload-text">
+                                        <p>拖拽配置文件到此处或点击选择</p>
+                                        <small>支持 .yaml, .yml, .txt 格式，最大 16MB</small>
+                                    </div>
+                                </div>
+                                <input type="file" id="file-input" accept=".yaml,.yml,.txt" hidden>
+                            </div>
+                            
+                            <!-- 转换模式选择 -->
+                            <div class="input-group">
+                                <label>
+                                    <i class="fas fa-cogs"></i>
+                                    转换模式
+                                </label>
+                                <div class="mode-selector">
+                                    <input type="radio" id="mode-standard-file" name="convert-mode-file" value="standard">
+                                    <label for="mode-standard-file" class="mode-option">
+                                        <div class="mode-icon">
+                                            <i class="fas fa-desktop"></i>
+                                        </div>
+                                        <div class="mode-content">
+                                            <span class="mode-title">标准模式</span>
+                                            <small class="mode-desc">适用于个人电脑和移动设备</small>
+                                        </div>
+                                        <div class="mode-check"></div>
+                                    </label>
+                                    
+                                    <input type="radio" id="mode-openwrt-file" name="convert-mode-file" value="openwrt">
+                                    <label for="mode-openwrt-file" class="mode-option">
+                                        <div class="mode-icon">
+                                            <i class="fas fa-router"></i>
+                                        </div>
+                                        <div class="mode-content">
+                                            <span class="mode-title">OpenWrt模式</span>
+                                            <small class="mode-desc">专为软路由和透明代理优化</small>
+                                        </div>
+                                        <div class="mode-check"></div>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <button class="convert-btn primary" id="convert-file-btn" disabled>
+                                <i class="fas fa-magic"></i>
+                                <span>开始转换</span>
+                                <div class="btn-glow"></div>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 进度指示器 -->
+            <section class="progress-section" id="progress-section" style="display: none;">
+                <div class="progress-card">
+                    <div class="progress-header">
+                        <h3>
+                            <i class="fas fa-cog fa-spin"></i>
+                            正在处理
+                        </h3>
+                        <p>正在智能分析和转换您的代理配置...</p>
+                    </div>
+                    <div class="progress-container">
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progress-fill"></div>
+                            <div class="progress-shine"></div>
+                        </div>
+                        <div class="progress-text" id="progress-text">初始化...</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 结果展示区域 -->
+            <section class="result-section" id="result-section" style="display: none;">
+                <div class="result-header">
+                    <div class="result-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="result-text">
+                        <h2>转换成功</h2>
+                        <p>您的代理配置已成功转换并优化</p>
+                    </div>
+                </div>
+
+                <!-- 统计信息 -->
+                <div class="stats-grid" id="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-server"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-number" id="total-nodes">0</div>
+                            <div class="stat-label">总节点</div>
+                        </div>
+                        <div class="stat-trend">
+                            <i class="fas fa-arrow-up"></i>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-number" id="stable-nodes">0</div>
+                            <div class="stat-label">稳定节点</div>
+                        </div>
+                        <div class="stat-trend">
+                            <i class="fas fa-check"></i>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-filter"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-number" id="filtered-nodes">0</div>
+                            <div class="stat-label">已过滤</div>
+                        </div>
+                        <div class="stat-trend">
+                            <i class="fas fa-times"></i>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-globe-asia"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-number" id="region-count">0</div>
+                            <div class="stat-label">地区数</div>
+                        </div>
+                        <div class="stat-trend">
+                            <i class="fas fa-map-marked-alt"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 端口配置表 -->
+                <div class="port-config" id="port-config">
+                    <div class="section-header">
+                        <h3>
+                            <i class="fas fa-ethernet"></i>
+                            SOCKS端口配置
+                        </h3>
+                        <p>以下是为您生成的专用代理端口</p>
+                    </div>
+                    <div class="port-table-wrapper">
+                        <div class="port-table">
+                            <div class="port-header">
+                                <div>端口</div>
+                                <div>类型</div>
+                                <div>地区</div>
+                                <div>节点数</div>
+                                <div>推荐用途</div>
+                            </div>
+                            <div class="port-row main-port">
+                                <div class="port-number">
+                                    <span class="port-badge main">7890</span>
+                                </div>
+                                <div class="port-type">
+                                    <span class="type-badge mixed">MIXED</span>
+                                </div>
+                                <div class="port-region">🌟 智能选择</div>
+                                <div class="port-nodes" id="main-port-nodes">-</div>
+                                <div class="port-usage">浏览器通用</div>
+                            </div>
+                            <!-- 动态生成其他端口行 -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 地区分布 -->
+                <div class="region-distribution" id="region-distribution">
+                    <div class="section-header">
+                        <h3>
+                            <i class="fas fa-map-marked-alt"></i>
+                            地区节点分布
+                        </h3>
+                        <p>按地区查看节点分布情况</p>
+                    </div>
+                    <div class="region-grid" id="region-grid">
+                        <!-- 动态生成地区卡片 -->
+                    </div>
+                </div>
+
+                <!-- OpenWrt提示 -->
+                <div class="openwrt-tips" id="openwrt-tips" style="display: none;">
+                    <div class="section-header">
+                        <h3>
+                            <i class="fas fa-router"></i>
+                            OpenWrt 使用提示
+                        </h3>
+                        <p>针对软路由环境的特殊配置说明</p>
+                    </div>
+                    <div class="tips-content" id="tips-content">
+                        <!-- 动态生成提示内容 -->
+                    </div>
+                </div>
+
+                <!-- 下载和订阅区域 -->
+                <div class="download-section">
+                    <div class="action-buttons">
+                        <button class="download-btn" id="download-btn">
+                            <i class="fas fa-download"></i>
+                            <span>下载配置文件</span>
+                            <div class="btn-glow"></div>
+                        </button>
+                        
+                        <div class="subscribe-section" id="subscribe-section" style="display: none;">
+                            <button class="subscribe-btn" id="copy-subscribe-btn">
+                                <i class="fas fa-link"></i>
+                                <span>复制订阅链接</span>
+                                <div class="btn-glow"></div>
+                            </button>
+                            <div class="subscribe-info">
+                                <small>适用于支持 Clash 订阅的客户端</small>
+                                <div class="subscribe-tips">
+                                    <div class="tip-item">
+                                        <i class="fas fa-info-circle"></i>
+                                        <span>本机使用：订阅链接可直接导入</span>
+                                    </div>
+                                    <div class="tip-item">
+                                        <i class="fas fa-wifi"></i>
+                                        <span>其他设备：需在同一局域网内</span>
+                                    </div>
+                                    <div class="tip-item">
+                                        <i class="fas fa-shield-alt"></i>
+                                        <span>请确保防火墙允许5000端口访问</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="download-info">
+                        <small id="download-filename">文件名: clash-config.yaml</small>
+                    </div>
+                </div>
+
+                <!-- 使用说明 -->
+                <div class="usage-guide">
+                    <div class="section-header">
+                        <h3>
+                            <i class="fas fa-question-circle"></i>
+                            使用方法
+                        </h3>
+                        <p>按照以下步骤使用转换后的配置</p>
+                    </div>
+                    <div class="guide-steps">
+                        <div class="guide-step">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h4>选择获取方式</h4>
+                                <p><strong>订阅链接（推荐）：</strong>复制订阅链接到客户端，自动更新配置</p>
+                                <p><strong>下载文件：</strong>手动下载配置文件并导入客户端</p>
+                            </div>
+                        </div>
+                        <div class="guide-step">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h4>导入到客户端</h4>
+                                <p><strong>本机使用：</strong>订阅链接可直接使用</p>
+                                <p><strong>其他设备：</strong>需确保设备能访问本机的局域网IP地址</p>
+                            </div>
+                        </div>
+                        <div class="guide-step">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h4>启动服务</h4>
+                                <p>重启客户端，配置将自动生效</p>
+                            </div>
+                        </div>
+                        <div class="guide-step">
+                            <div class="step-number">4</div>
+                            <div class="step-content">
+                                <h4>配置代理</h4>
+                                <p>根据需要设置应用程序的代理端口</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="usage-tips">
+                        <h4>
+                            <i class="fas fa-lightbulb"></i>
+                            推荐设置
+                        </h4>
+                        <div class="tips-grid">
+                            <div class="tip-item">
+                                <i class="fas fa-globe"></i>
+                                <span><strong>浏览器代理：</strong> <code>127.0.0.1:7890</code></span>
+                            </div>
+                            <div class="tip-item">
+                                <i class="fas fa-gamepad"></i>
+                                <span><strong>游戏加速：</strong> <code>127.0.0.1:7893</code> (日本)</span>
+                            </div>
+                            <div class="tip-item">
+                                <i class="fas fa-video"></i>
+                                <span><strong>视频解锁：</strong> <code>127.0.0.1:7892</code> (美国)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 错误展示区域 -->
+            <section class="error-section" id="error-section" style="display: none;">
+                <div class="error-content">
+                    <div class="error-icon">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <div class="error-text">
+                        <h3>转换失败</h3>
+                        <p id="error-message">未知错误</p>
+                    </div>
+                </div>
+                <button class="retry-btn" id="retry-btn">
+                    <i class="fas fa-redo"></i>
+                    <span>重试转换</span>
+                </button>
+            </section>
+        </main>
+
+        <!-- 页脚 -->
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-main">
+                    <div class="footer-logo">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>智能过滤不稳定节点，专注稳定中转体验</span>
+                    </div>
+                    <div class="footer-links">
+                        <a href="/api/ping" class="footer-link">
+                            <i class="fas fa-heartbeat"></i>
+                            <span>服务状态</span>
+                        </a>
+                        <a href="API.md" class="footer-link">
+                            <i class="fas fa-code"></i>
+                            <span>API文档</span>
+                        </a>
+                        <a href="README.md" class="footer-link">
+                            <i class="fas fa-question-circle"></i>
+                            <span>帮助文档</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2024 Clash SOCKS 代理转换器 - 开源免费</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html> 

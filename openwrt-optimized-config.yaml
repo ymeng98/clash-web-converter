@@ -1,0 +1,253 @@
+# OpenWrt软路由专用Clash配置
+# 基于原始转换器输出，针对软路由环境优化
+
+# 基础网络配置
+mixed-port: 7890
+allow-lan: true
+bind-address: '0.0.0.0'
+mode: rule
+log-level: info
+external-controller: '0.0.0.0:9090'
+external-ui: dashboard
+
+# IPv6配置（软路由建议）
+ipv6: false
+
+# DNS配置（软路由优化）
+dns:
+  enable: true
+  ipv6: false
+  listen: '0.0.0.0:1053'
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  fake-ip-filter:
+    - '*.lan'
+    - '*.local'
+    - 'localhost.ptlogin2.qq.com'
+  default-nameserver:
+    - 114.114.114.114
+    - 223.5.5.5
+  nameserver:
+    - 'https://doh.pub/dns-query'
+    - 'https://dns.alidns.com/dns-query'
+  fallback:
+    - 'https://cloudflare-dns.com/dns-query'
+    - 'https://dns.google/dns-query'
+  fallback-filter:
+    geoip: true
+    geoip-code: CN
+    ipcidr:
+      - 240.0.0.0/4
+
+# TUN模式配置（软路由推荐）
+tun:
+  enable: true
+  stack: system
+  dns-hijack:
+    - 198.18.0.2:53
+  auto-route: true
+  auto-detect-interface: true
+
+# 代理节点（保持原始节点配置）
+proxies:
+- name: 🇭🇰 香港中转
+  type: trojan
+  server: wb.kaiqsz.com
+  port: 12221
+  password: 57496987-12da-4e70-a3fe-38a6ce2c0718
+  udp: true
+  skip-cert-verify: true
+  sni: mmbiz.redapricotcloud.com
+  network: tcp
+
+- name: 🇺🇸 美国中转
+  type: trojan
+  server: wb.kaiqsz.com
+  port: 21489
+  password: 57496987-12da-4e70-a3fe-38a6ce2c0718
+  udp: true
+  skip-cert-verify: true
+  sni: mmbiz.redapricotcloud.com
+  network: tcp
+
+- name: 🇯🇵 日本中转
+  type: trojan
+  server: wb.kaiqsz.com
+  port: 28713
+  password: 57496987-12da-4e70-a3fe-38a6ce2c0718
+  udp: true
+  skip-cert-verify: true
+  sni: mmbiz1.redapricotcloud.com
+  network: tcp
+
+- name: 🇸🇬 新加坡中转
+  type: trojan
+  server: wb.kaiqsz.com
+  port: 48291
+  password: 57496987-12da-4e70-a3fe-38a6ce2c0718
+  udp: true
+  skip-cert-verify: true
+  sni: mmbiz1.redapricotcloud.com
+  network: tcp
+
+- name: 🇨🇳 台湾中转
+  type: trojan
+  server: wb.kaiqsz.com
+  port: 42765
+  password: 57496987-12da-4e70-a3fe-38a6ce2c0718
+  udp: true
+  skip-cert-verify: true
+  sni: mmbiz1.redapricotcloud.com
+  network: tcp
+
+# 代理组配置（软路由优化）
+proxy-groups:
+- name: 🚀 节点选择
+  type: select
+  proxies:
+    - ♻️ 自动选择
+    - 🔯 故障转移
+    - 🔮 负载均衡
+    - 🇭🇰 香港节点
+    - 🇺🇸 美国节点
+    - 🇯🇵 日本节点
+    - 🇸🇬 新加坡节点
+    - 🇨🇳 台湾节点
+    - DIRECT
+
+- name: ♻️ 自动选择
+  type: url-test
+  proxies:
+    - 🇭🇰 香港中转
+    - 🇺🇸 美国中转
+    - 🇯🇵 日本中转
+    - 🇸🇬 新加坡中转
+    - 🇨🇳 台湾中转
+  url: 'http://www.gstatic.com/generate_204'
+  interval: 300
+  tolerance: 50
+
+- name: 🔯 故障转移
+  type: fallback
+  proxies:
+    - 🇭🇰 香港中转
+    - 🇯🇵 日本中转
+    - 🇺🇸 美国中转
+    - 🇸🇬 新加坡中转
+  url: 'http://www.gstatic.com/generate_204'
+  interval: 300
+
+- name: 🔮 负载均衡
+  type: load-balance
+  strategy: consistent-hashing
+  proxies:
+    - 🇭🇰 香港中转
+    - 🇺🇸 美国中转
+    - 🇯🇵 日本中转
+    - 🇸🇬 新加坡中转
+  url: 'http://www.gstatic.com/generate_204'
+  interval: 300
+
+- name: 🇭🇰 香港节点
+  type: select
+  proxies:
+    - 🇭🇰 香港中转
+
+- name: 🇺🇸 美国节点
+  type: select
+  proxies:
+    - 🇺🇸 美国中转
+
+- name: 🇯🇵 日本节点
+  type: select
+  proxies:
+    - 🇯🇵 日本中转
+
+- name: 🇸🇬 新加坡节点
+  type: select
+  proxies:
+    - 🇸🇬 新加坡中转
+
+- name: 🇨🇳 台湾节点
+  type: select
+  proxies:
+    - 🇨🇳 台湾中转
+
+- name: 🌍 国外媒体
+  type: select
+  proxies:
+    - 🚀 节点选择
+    - ♻️ 自动选择
+    - 🇺🇸 美国节点
+    - 🇭🇰 香港节点
+    - 🇯🇵 日本节点
+
+- name: 📲 电报消息
+  type: select
+  proxies:
+    - 🚀 节点选择
+    - 🇸🇬 新加坡节点
+    - 🇭🇰 香港节点
+
+- name: 🍃 应用净化
+  type: select
+  proxies:
+    - REJECT
+    - DIRECT
+
+- name: 🐟 漏网之鱼
+  type: select
+  proxies:
+    - 🚀 节点选择
+    - DIRECT
+
+# 分流规则（软路由专用）
+rules:
+  # 本地网络直连
+  - DOMAIN-SUFFIX,local,DIRECT
+  - IP-CIDR,127.0.0.0/8,DIRECT
+  - IP-CIDR,172.16.0.0/12,DIRECT
+  - IP-CIDR,192.168.0.0/16,DIRECT
+  - IP-CIDR,10.0.0.0/8,DIRECT
+  - IP-CIDR,17.0.0.0/8,DIRECT
+  - IP-CIDR,100.64.0.0/10,DIRECT
+  - IP-CIDR,224.0.0.0/4,DIRECT
+  - IP-CIDR6,fe80::/10,DIRECT
+
+  # OpenWrt管理页面
+  - DOMAIN-SUFFIX,openwrt.lan,DIRECT
+  - DOMAIN-SUFFIX,router.lan,DIRECT
+  - IP-CIDR,192.168.1.1/32,DIRECT
+
+  # 广告拦截
+  - DOMAIN-SUFFIX,googlesyndication.com,🍃 应用净化
+  - DOMAIN-SUFFIX,googleadservices.com,🍃 应用净化
+  - DOMAIN-KEYWORD,adnxs,🍃 应用净化
+  - DOMAIN-KEYWORD,adsystem,🍃 应用净化
+
+  # Telegram
+  - DOMAIN-SUFFIX,t.me,📲 电报消息
+  - DOMAIN-SUFFIX,tdesktop.com,📲 电报消息
+  - DOMAIN-SUFFIX,telegra.ph,📲 电报消息
+  - DOMAIN-SUFFIX,telegram.org,📲 电报消息
+  - IP-CIDR,91.108.4.0/22,📲 电报消息
+  - IP-CIDR,91.108.8.0/21,📲 电报消息
+  - IP-CIDR,91.108.16.0/22,📲 电报消息
+  - IP-CIDR,149.154.160.0/20,📲 电报消息
+
+  # 国外媒体
+  - DOMAIN-SUFFIX,youtube.com,🌍 国外媒体
+  - DOMAIN-SUFFIX,googlevideo.com,🌍 国外媒体
+  - DOMAIN-SUFFIX,netflix.com,🌍 国外媒体
+  - DOMAIN-SUFFIX,nflximg.net,🌍 国外媒体
+  - DOMAIN-SUFFIX,twitter.com,🌍 国外媒体
+  - DOMAIN-SUFFIX,facebook.com,🌍 国外媒体
+  - DOMAIN-SUFFIX,instagram.com,🌍 国外媒体
+
+  # 国内直连
+  - DOMAIN-SUFFIX,cn,DIRECT
+  - DOMAIN-KEYWORD,-cn,DIRECT
+  - GEOIP,CN,DIRECT
+
+  # 漏网之鱼
+  - MATCH,🐟 漏网之鱼 

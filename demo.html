@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clash稳定中转SOCKS代理转换器 - 演示</title>
+    <link rel="stylesheet" href="static/css/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .demo-banner {
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+            padding: 1rem;
+            text-align: center;
+            color: white;
+            margin-bottom: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .demo-banner h2 {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+        .demo-banner p {
+            margin: 0.5rem 0 0 0;
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 演示横幅 -->
+        <div class="demo-banner">
+            <h2><i class="fas fa-eye"></i> 界面预览模式</h2>
+            <p>这是Web界面的演示效果，实际功能请启动Flask服务器</p>
+        </div>
+
+        <!-- 头部标题 -->
+        <header class="header">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-network-wired"></i>
+                    <h1>Clash SOCKS代理转换器</h1>
+                </div>
+                <p class="subtitle">智能提取稳定中转节点，生成多地区专用SOCKS代理配置</p>
+            </div>
+        </header>
+
+        <!-- 主要内容区域 -->
+        <main class="main-content">
+            <!-- 输入区域 -->
+            <section class="input-section">
+                <div class="tab-container">
+                    <div class="tab-buttons">
+                        <button class="tab-btn active">
+                            <i class="fas fa-link"></i>
+                            订阅链接
+                        </button>
+                        <button class="tab-btn">
+                            <i class="fas fa-upload"></i>
+                            上传文件
+                        </button>
+                    </div>
+
+                    <!-- 订阅链接输入 -->
+                    <div class="tab-content active">
+                        <div class="input-group">
+                            <label>
+                                <i class="fas fa-globe"></i>
+                                机场订阅链接
+                            </label>
+                            <input 
+                                type="url" 
+                                placeholder="https://your-airport.com/api/v1/client/subscribe?token=..."
+                                class="url-input"
+                                value="https://example.com/subscribe?token=demo"
+                            >
+                            <small class="input-hint">
+                                支持Clash、V2Ray等格式的订阅链接
+                            </small>
+                        </div>
+                        <button class="convert-btn">
+                            <i class="fas fa-magic"></i>
+                            开始转换
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 结果展示区域 -->
+            <section class="result-section">
+                <div class="result-header">
+                    <h2><i class="fas fa-check-circle"></i> 转换成功</h2>
+                </div>
+
+                <!-- 统计信息 -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-server"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-number">65</div>
+                            <div class="stat-label">总节点</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-number">50</div>
+                            <div class="stat-label">稳定节点</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-filter"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-number">15</div>
+                            <div class="stat-label">已过滤</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-globe-asia"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-number">8</div>
+                            <div class="stat-label">地区数</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 端口配置表 -->
+                <div class="port-config">
+                    <h3><i class="fas fa-ethernet"></i> SOCKS端口配置</h3>
+                    <div class="port-table">
+                        <div class="port-header">
+                            <div>端口</div>
+                            <div>类型</div>
+                            <div>地区</div>
+                            <div>节点数</div>
+                            <div>推荐用途</div>
+                        </div>
+                        <div class="port-row main-port">
+                            <div class="port-number">7890</div>
+                            <div class="port-type">MIXED</div>
+                            <div class="port-region">🌟 智能选择</div>
+                            <div class="port-nodes">50</div>
+                            <div class="port-usage">浏览器通用</div>
+                        </div>
+                        <div class="port-row">
+                            <div class="port-number">7891</div>
+                            <div class="port-type">SOCKS</div>
+                            <div class="port-region">🇭🇰 香港</div>
+                            <div class="port-nodes">3</div>
+                            <div class="port-usage">速度最快</div>
+                        </div>
+                        <div class="port-row">
+                            <div class="port-number">7892</div>
+                            <div class="port-type">SOCKS</div>
+                            <div class="port-region">🇺🇸 美国</div>
+                            <div class="port-nodes">4</div>
+                            <div class="port-usage">内容解锁</div>
+                        </div>
+                        <div class="port-row">
+                            <div class="port-number">7893</div>
+                            <div class="port-type">SOCKS</div>
+                            <div class="port-region">🇯🇵 日本</div>
+                            <div class="port-nodes">6</div>
+                            <div class="port-usage">游戏优化</div>
+                        </div>
+                        <div class="port-row">
+                            <div class="port-number">7894</div>
+                            <div class="port-type">SOCKS</div>
+                            <div class="port-region">🇸🇬 新加坡</div>
+                            <div class="port-nodes">5</div>
+                            <div class="port-usage">东南亚</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 地区分布 -->
+                <div class="region-distribution">
+                    <h3><i class="fas fa-map-marked-alt"></i> 地区节点分布</h3>
+                    <div class="region-grid">
+                        <div class="region-card">
+                            <span class="region-flag">🇯🇵</span>
+                            <div class="region-name">日本</div>
+                            <div class="region-count">6 个节点</div>
+                        </div>
+                        <div class="region-card">
+                            <span class="region-flag">🇸🇬</span>
+                            <div class="region-name">新加坡</div>
+                            <div class="region-count">5 个节点</div>
+                        </div>
+                        <div class="region-card">
+                            <span class="region-flag">🇺🇸</span>
+                            <div class="region-name">美国</div>
+                            <div class="region-count">4 个节点</div>
+                        </div>
+                        <div class="region-card">
+                            <span class="region-flag">🇭🇰</span>
+                            <div class="region-name">香港</div>
+                            <div class="region-count">3 个节点</div>
+                        </div>
+                        <div class="region-card">
+                            <span class="region-flag">🇹🇼</span>
+                            <div class="region-name">台湾</div>
+                            <div class="region-count">3 个节点</div>
+                        </div>
+                        <div class="region-card">
+                            <span class="region-flag">🇰🇷</span>
+                            <div class="region-name">韩国</div>
+                            <div class="region-count">2 个节点</div>
+                        </div>
+                        <div class="region-card">
+                            <span class="region-flag">🇬🇧</span>
+                            <div class="region-name">英国</div>
+                            <div class="region-count">2 个节点</div>
+                        </div>
+                        <div class="region-card">
+                            <span class="region-flag">🌍</span>
+                            <div class="region-name">其他</div>
+                            <div class="region-count">25 个节点</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 下载按钮 -->
+                <div class="download-section">
+                    <button class="download-btn">
+                        <i class="fas fa-download"></i>
+                        下载配置文件
+                    </button>
+                    <div class="download-info">
+                        <small>文件名: clash-stable-20241206_143022.yaml</small>
+                    </div>
+                </div>
+
+                <!-- 使用说明 -->
+                <div class="usage-guide">
+                    <h3><i class="fas fa-question-circle"></i> 使用方法</h3>
+                    <ol>
+                        <li>下载上面生成的配置文件</li>
+                        <li>将配置文件导入到Clash客户端</li>
+                        <li>重启Clash应用</li>
+                        <li>根据需要选择对应端口进行代理设置</li>
+                    </ol>
+                    <div class="usage-tips">
+                        <p><strong>推荐设置：</strong></p>
+                        <p>• 浏览器代理：<code>127.0.0.1:7890</code></p>
+                        <p>• 游戏加速：<code>127.0.0.1:7893</code> (日本)</p>
+                        <p>• 视频解锁：<code>127.0.0.1:7892</code> (美国)</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- 页脚 -->
+        <footer class="footer">
+            <div class="footer-content">
+                <p>
+                    <i class="fas fa-shield-alt"></i>
+                    智能过滤不稳定节点，专注稳定中转体验
+                </p>
+                <div class="footer-links">
+                    <a href="README.md">
+                        <i class="fas fa-question-circle"></i>
+                        帮助文档
+                    </a>
+                    <a href="#" onclick="alert('Web服务演示模式，实际请启动Flask服务器')">
+                        <i class="fas fa-heartbeat"></i>
+                        服务状态
+                    </a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // 演示模式的简单交互
+        document.addEventListener('DOMContentLoaded', function() {
+            // 标签页切换演示
+            const tabButtons = document.querySelectorAll('.tab-btn');
+            tabButtons.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    tabButtons.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+
+            // 按钮点击效果
+            document.querySelector('.convert-btn').addEventListener('click', function() {
+                alert('这是演示模式！\n\n要体验完整功能，请：\n1. 运行 start.bat 启动服务器\n2. 访问 http://localhost:5000');
+            });
+
+            document.querySelector('.download-btn').addEventListener('click', function() {
+                alert('演示模式下无法下载文件\n\n请启动Flask服务器体验完整功能');
+            });
+        });
+    </script>
+</body>
+</html> 
