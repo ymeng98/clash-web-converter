@@ -1,0 +1,250 @@
+mixed-port: 7890
+allow-lan: false
+bind-address: '*'
+mode: rule
+log-level: info
+external-controller: 127.0.0.1:9090
+dns:
+  enable: true
+  ipv6: false
+  default-nameserver:
+  - 223.5.5.5
+  - 119.29.29.29
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  nameserver:
+  - https://doh.pub/dns-query
+  - https://dns.alidns.com/dns-query
+proxies:
+- name: 防失联网站
+  type: ss
+  server: '12380'
+  port: 11111
+  cipher: chacha20-ietf-poly1305
+  password: bf0e4e42-0a19-49e5-ac3f-9656dc414f65
+  udp: true
+- name: kk.candycandy2.top
+  type: ss
+  server: '21215'
+  port: 51111
+  cipher: chacha20-ietf-poly1305
+  password: bf0e4e42-0a19-49e5-ac3f-9656dc414f65
+  udp: true
+- name: abc.cathot133.top
+  type: ss
+  server: '13213'
+  port: 22222
+  cipher: chacha20-ietf-poly1305
+  password: bf0e4e42-0a19-49e5-ac3f-9656dc414f65
+  udp: true
+- name: x 代表使用倍率
+  type: ss
+  server: '11234'
+  port: 46758
+  cipher: chacha20-ietf-poly1305
+  password: bf0e4e42-0a19-49e5-ac3f-9656dc414f65
+  udp: true
+- name: 用不了请更新订阅
+  type: ss
+  server: '0'
+  port: 0
+  cipher: chacha20-ietf-poly1305
+  password: bf0e4e42-0a19-49e5-ac3f-9656dc414f65
+  udp: true
+- name: 深港专线1 5x
+  type: ss
+  server: xgzx.iikk05.xyz
+  port: 30161
+  cipher: chacha20-ietf-poly1305
+  password: bf0e4e42-0a19-49e5-ac3f-9656dc414f65
+  udp: true
+- name: 香港01
+  type: ss
+  server: zj.iikk05.xyz
+  port: 12571
+  cipher: chacha20-ietf-poly1305
+  password: bf0e4e42-0a19-49e5-ac3f-9656dc414f65
+  udp: true
+- name: 香港02
+  type: ss
+  server: hkr.iikk05.xyz
+  port: 25883
+  cipher: chacha20-ietf-poly1305
+  password: bf0e4e42-0a19-49e5-ac3f-9656dc414f65
+  udp: true
+- name: 深港专线 备 5x
+  type: ss
+  server: zz1.iikk05.xyz
+  port: 21901
+  cipher: chacha20-ietf-poly1305
+  password: bf0e4e42-0a19-49e5-ac3f-9656dc414f65
+  udp: true
+- name: 香港03 备
+  type: ss
+  server: lk1.iikk05.xyz
+  port: 24399
+  cipher: chacha20-ietf-poly1305
+  password: bf0e4e42-0a19-49e5-ac3f-9656dc414f65
+  udp: true
+- name: 日本专线1 5x
+  type: ss
+  server: djzc.iikk05.xyz
+  port: 48640
+  cipher: chacha20-ietf-poly1305
+  password: bf0e4e42-0a19-49e5-ac3f-9656dc414f65
+  udp: true
+- name: 日本1 CN2
+  type: ss
+  server: rb22.iikk05.xyz
+  port: 12672
+  cipher: chacha20-ietf-poly1305
+  password: bf0e4e42-0a19-49e5-ac3f-9656dc414f65
+  udp: true
+- name: 日本02
+  type: ss
+  server: rb222.iikk05.xyz
+  port: 11440
+  cipher: chacha20-ietf-poly1305
+  password: bf0e4e42-0a19-49e5-ac3f-9656dc414f65
+  udp: true
+- name: 澳大利亚
+  type: ss
+  server: UKZC.iikk05.xyz
+  port: 23112
+  cipher: chacha20-ietf-poly1305
+  password: bf0e4e42-0a19-49e5-ac3f-9656dc414f65
+  udp: true
+- name: 美国 01 家宽
+  type: ss
+  server: lsus1.iikk05.xyz
+  port: 12629
+  cipher: chacha20-ietf-poly1305
+  password: bf0e4e42-0a19-49e5-ac3f-9656dc414f65
+  udp: true
+- name: 美国 02 高速
+  type: ss
+  server: los3.iikk05.xyz
+  port: 44979
+  cipher: chacha20-ietf-poly1305
+  password: bf0e4e42-0a19-49e5-ac3f-9656dc414f65
+  udp: true
+- name: 美国03
+  type: ss
+  server: los3.iikk05.xyz
+  port: 39137
+  cipher: chacha20-ietf-poly1305
+  password: bf0e4e42-0a19-49e5-ac3f-9656dc414f65
+  udp: true
+- name: 新加坡1 CN2 2x
+  type: ss
+  server: scn2.iikk05.xyz
+  port: 46939
+  cipher: chacha20-ietf-poly1305
+  password: bf0e4e42-0a19-49e5-ac3f-9656dc414f65
+  udp: true
+- name: 新加坡2 BGP
+  type: ss
+  server: scn2.iikk05.xyz
+  port: 43758
+  cipher: chacha20-ietf-poly1305
+  password: bf0e4e42-0a19-49e5-ac3f-9656dc414f65
+  udp: true
+- name: 新加坡3 高速
+  type: ss
+  server: spt.iikk05.xyz
+  port: 48957
+  cipher: chacha20-ietf-poly1305
+  password: bf0e4e42-0a19-49e5-ac3f-9656dc414f65
+  udp: true
+- name: 东京01 3x
+  type: ss
+  server: doj.iikk05.xyz
+  port: 25134
+  cipher: chacha20-ietf-poly1305
+  password: bf0e4e42-0a19-49e5-ac3f-9656dc414f65
+  udp: true
+- name: 东京02
+  type: ss
+  server: doj.iikk05.xyz
+  port: 42521
+  cipher: chacha20-ietf-poly1305
+  password: bf0e4e42-0a19-49e5-ac3f-9656dc414f65
+  udp: true
+proxy-groups:
+- name: 🌟 主选择
+  type: select
+  proxies:
+  - 防失联网站
+  - kk.candycandy2.top
+  - abc.cathot133.top
+  - x 代表使用倍率
+  - 用不了请更新订阅
+  - 深港专线1 5x
+  - 香港01
+  - 香港02
+  - 深港专线 备 5x
+  - 香港03 备
+  - 日本专线1 5x
+  - 日本1 CN2
+  - 日本02
+  - 澳大利亚
+  - 美国 01 家宽
+  - 美国 02 高速
+  - 美国03
+  - 新加坡1 CN2 2x
+  - 新加坡2 BGP
+  - 新加坡3 高速
+  - 东京01 3x
+  - 东京02
+- name: 香港出口
+  type: select
+  proxies:
+  - 深港专线1 5x
+  - 香港01
+  - 香港02
+  - 深港专线 备 5x
+  - 香港03 备
+- name: 美国出口
+  type: select
+  proxies:
+  - 美国 01 家宽
+  - 美国 02 高速
+  - 美国03
+- name: 日本出口
+  type: select
+  proxies:
+  - 日本专线1 5x
+  - 日本1 CN2
+  - 日本02
+- name: 新加坡出口
+  type: select
+  proxies:
+  - 用不了请更新订阅
+  - 新加坡1 CN2 2x
+  - 新加坡2 BGP
+  - 新加坡3 高速
+rules:
+- DOMAIN-SUFFIX,local,DIRECT
+- IP-CIDR,127.0.0.0/8,DIRECT
+- IP-CIDR,172.16.0.0/12,DIRECT
+- IP-CIDR,192.168.0.0/16,DIRECT
+- IP-CIDR,10.0.0.0/8,DIRECT
+- GEOIP,CN,DIRECT
+- MATCH,🌟 主选择
+listeners:
+- name: 香港SOCKS
+  type: socks
+  port: 7891
+  proxy: 香港出口
+- name: 美国SOCKS
+  type: socks
+  port: 7892
+  proxy: 美国出口
+- name: 日本SOCKS
+  type: socks
+  port: 7893
+  proxy: 日本出口
+- name: 新加坡SOCKS
+  type: socks
+  port: 7894
+  proxy: 新加坡出口

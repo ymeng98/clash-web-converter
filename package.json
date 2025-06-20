@@ -1,0 +1,26 @@
+{
+  "name": "clash-web-converter",
+  "version": "1.0.0",
+  "description": "Clash稳定中转SOCKS代理转换器 - Web版",
+  "main": "index.js",
+  "scripts": {
+    "build": "echo 'Building for Netlify'",
+    "dev": "netlify dev",
+    "deploy": "netlify deploy --prod"
+  },
+  "keywords": [
+    "clash",
+    "proxy",
+    "converter",
+    "socks",
+    "netlify"
+  ],
+  "author": "CS Project",
+  "license": "MIT",
+  "dependencies": {
+    "multiparty": "^4.2.3"
+  },
+  "devDependencies": {
+    "netlify-cli": "^17.0.0"
+  }
+} 
