@@ -18,7 +18,7 @@ sudo apt install -y git
 # 克隆项目（如果不存在）
 if [ ! -d "clash-web-converter" ]; then
     echo "📁 克隆项目..."
-    git clone [你的仓库地址] clash-web-converter
+    git clone https://github.com/ymeng98/clash-web-converter.git
 fi
 
 cd clash-web-converter
